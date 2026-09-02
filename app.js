@@ -4,6 +4,19 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ───────── DATA: ALL COMMANDS (500+) ───────── */
+// Multi-term search: every whitespace-separated term must appear somewhere in
+// the entry's command, description or category. A single term behaves exactly
+// as before, so "ssl" is unchanged, while "ssl profile" now matches
+// "list ltm profile client-ssl" — previously it matched nothing, because the
+// whole query had to occur as one contiguous substring.
+function matchesQuery(item, query) {
+  var hay = ((item.code || "") + " " + (item.desc || "") + " " + (item.cat || "")).toLowerCase();
+  var terms = String(query == null ? "" : query).toLowerCase().split(/\s+/).filter(Boolean);
+  if (!terms.length) return false;
+  for (var i = 0; i < terms.length; i++) if (hay.indexOf(terms[i]) === -1) return false;
+  return true;
+}
+
 const COMMANDS = [
   // ═════════════════════ SYSTEM ═════════════════════
   { cat: "System", code: "get system status", desc: "Firmware versiyonu, seri no, hostname, uptime, HA modu (master/slave/standalone), operation mode (NAT/Transparent). HA'da hangi cihazda oldugunuzu seri no'dan anlarsiniz", sev: "i" },
@@ -1703,7 +1716,7 @@ function renderCommands() {
     let cmds = activeCat === "Tumu" ? COMMANDS : COMMANDS.filter(c => c.cat === activeCat);
     if (filter) {
       const f = filter.toLowerCase();
-      cmds = cmds.filter(c => c.code.toLowerCase().includes(f) || c.desc.toLowerCase().includes(f) || c.cat.toLowerCase().includes(f));
+      cmds = cmds.filter(c => matchesQuery(c, f));
     }
     const wrap = document.getElementById("cmd-table-wrap");
     if (cmds.length === 0) {
@@ -3065,9 +3078,7 @@ function handleSearch(query) {
   }
   const q = query.toLowerCase();
   const results = COMMANDS.filter(c =>
-    c.code.toLowerCase().includes(q) ||
-    c.desc.toLowerCase().includes(q) ||
-    c.cat.toLowerCase().includes(q)
+    matchesQuery(c, q)
   );
 
   // Show results in dashboard area
