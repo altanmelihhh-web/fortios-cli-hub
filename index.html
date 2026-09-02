@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortiGate CLI Hub — Network Security Reference</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ───────── SIDEBAR ───────── -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <h1>FortiGate CLI Hub</h1>
+      <div class="subtitle">v1.0 · Fintech / SOL Reference</div>
+    </div>
+
+    <div class="sidebar-search">
+      <input type="text" id="search" placeholder="Ara: komut, senaryo...  (/ tusu)" autocomplete="off">
+      <div style="font-size:10px;color:var(--text-2);margin-top:6px;cursor:pointer;" onclick="showShortcutHelp()">Kisayollar (? tusu)</div>
+    </div>
+
+    <ul class="nav-list">
+      <li><a data-section="dashboard" class="active"><span class="icon">&#9646;</span> Dashboard</a></li>
+      <li style="padding:8px 16px 4px;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);">Komut Referans</li>
+      <li><a data-section="commands"><span class="icon">&#9881;</span> Komut Kutuphanesi</a></li>
+      <li><a data-section="sniffer"><span class="icon">&#128225;</span> Sniffer</a></li>
+      <li><a data-section="debugflow"><span class="icon">&#128270;</span> Debug Flow</a></li>
+      <li><a data-section="vpn"><span class="icon">&#128274;</span> VPN (IPsec/SSL)</a></li>
+      <li><a data-section="ha"><span class="icon">&#9878;</span> HA / Cluster</a></li>
+      <li style="padding:8px 16px 4px;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);">Network</li>
+      <li><a data-section="routing"><span class="icon">&#128739;</span> Routing</a></li>
+      <li><a data-section="interfaces"><span class="icon">&#128268;</span> Interface</a></li>
+      <li><a data-section="arpping"><span class="icon">&#128225;</span> ARP / Ping / Telnet</a></li>
+      <li style="padding:8px 16px 4px;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);">Firewall</li>
+      <li><a data-section="system"><span class="icon">&#9874;</span> System</a></li>
+      <li><a data-section="session"><span class="icon">&#128203;</span> Session</a></li>
+      <li><a data-section="policy"><span class="icon">&#128737;</span> Policy / PBR</a></li>
+      <li><a data-section="objects"><span class="icon">&#128451;</span> Objects / VIP</a></li>
+      <li><a data-section="users"><span class="icon">&#128101;</span> Users / Auth</a></li>
+      <li style="padding:8px 16px 4px;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-2);">Diger</li>
+      <li><a data-section="utm"><span class="icon">&#128737;</span> UTM / IPS / WAD</a></li>
+      <li><a data-section="sdwan"><span class="icon">&#127760;</span> SD-WAN</a></li>
+      <li><a data-section="fext"><span class="icon">&#128225;</span> FEXT (FortiExtender)</a></li>
+      <li><a data-section="logging"><span class="icon">&#128196;</span> Logging</a></li>
+      <li><a data-section="managed"><span class="icon">&#128225;</span> FortiSwitch</a></li>
+      <li><a data-section="fortiap"><span class="icon">&#128225;</span> FortiAP</a></li>
+      <li><a data-section="scenarios"><span class="icon">&#9888;</span> Sorun Senaryolari</a></li>
+      <li><a data-section="github"><span class="icon">&#9095;</span> GitHub / Kaynaklar</a></li>
+    </ul>
+  </aside>
+
+  <!-- ───────── MAIN ───────── -->
+  <main id="main">
+    <section class="section active" id="dashboard"></section>
+    <section class="section" id="commands"></section>
+    <section class="section" id="sniffer"></section>
+    <section class="section" id="debugflow"></section>
+    <section class="section" id="vpn"></section>
+    <section class="section" id="ha"></section>
+    <section class="section" id="routing"></section>
+    <section class="section" id="interfaces"></section>
+    <section class="section" id="arpping"></section>
+    <section class="section" id="system"></section>
+    <section class="section" id="session"></section>
+    <section class="section" id="policy"></section>
+    <section class="section" id="objects"></section>
+    <section class="section" id="users"></section>
+    <section class="section" id="utm"></section>
+    <section class="section" id="sdwan"></section>
+    <section class="section" id="fext"></section>
+    <section class="section" id="logging"></section>
+    <section class="section" id="managed"></section>
+    <section class="section" id="fortiap"></section>
+    <section class="section" id="scenarios"></section>
+    <section class="section" id="github"></section>
+  </main>
+
+  <!-- ───────── TOAST ───────── -->
+  <div id="toast">Kopyalandi</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
