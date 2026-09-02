@@ -66,7 +66,7 @@ const COMMANDS = [
   { cat: "Session", code: "get system session status", desc: "Toplam aktif session sayisi. Model limitine yaklasiyorsa conserve mode riski. Limit asildiysa yeni baglanti kabul edilmez", sev: "i" },
   { cat: "Session", code: "get system session-info full-stat", desc: "Detayli istatistikler: mevcut sayi, global limit, TCP per-state breakdown, clash sayilari. memory_tension_drop>0 ise memory yetersiz", sev: "i" },
   { cat: "Session", code: "get system session list", desc: "Tum session'lari basit formatta listeler. Cikti cok buyuk olabilir! Belirli IP icin 'grep' ile filtreleyin", sev: "i" },
-  { cat: "Session", code: "get system session list | grep 10.134.9.84", desc: "Belirli IP'nin session'larini filtreler. Hizli kontrol icin ama detay icin diagnose sys session kullanin", sev: "i" },
+  { cat: "Session", code: "get system session list | grep 10.20.9.84", desc: "Belirli IP'nin session'larini filtreler. Hizli kontrol icin ama detay icin diagnose sys session kullanin", sev: "i" },
   { cat: "Session", code: "get system session-ttl", desc: "Default TCP idle timeout suresi (varsayilan 3600sn=1saat). Bu sure dolunca inaktif session silinir. Kisa tutmak session sayisini dusurur", sev: "i" },
   { cat: "Session", code: "get system global | grep -i timer", desc: "Global TCP/UDP session timeout degerleri. tcp-halfclose-timer, tcp-halfopen-timer, tcp-timewait-timer gibi ince ayarlar", sev: "i" },
   { cat: "Session", code: "diagnose sys session stat", desc: "Session engine istatistikleri: clash, memory_tension_drop, TCP state dagilimlari. memory_tension_drop>0 = conserve mode belirtisi", sev: "i" },
@@ -131,8 +131,8 @@ const COMMANDS = [
   { cat: "Connectivity", code: "execute ssh-options {options}", desc: "SSH ayarlari: source (kaynak IP), port (hedef port, default 22). Farkli porttan SSH baglantisi icin 'port 2222' gibi", sev: "i" },
 
   // ═════════════════════ SNIFFER ═════════════════════
-  { cat: "Sniffer", code: "diagnose sniffer packet any 'host 10.41.30.2' 4 0", desc: "Belirli IP'nin tum trafigini yakala. verbose=4 interface adi gosterir (en cok kullanilan). count=0 sinirsiz (Ctrl+C ile dur). Trafik var mi yok mu ilk kontrol", sev: "i" },
-  { cat: "Sniffer", code: "diagnose sniffer packet any 'host 10.41.30.2 and port 443' 4 0", desc: "IP + port filtreli — sadece HTTPS trafigini yakalar. 'and' operatoru iki kosulu birlestirir. BPF (Berkeley Packet Filter) syntax kullanilir", sev: "i" },
+  { cat: "Sniffer", code: "diagnose sniffer packet any 'host 10.40.30.2' 4 0", desc: "Belirli IP'nin tum trafigini yakala. verbose=4 interface adi gosterir (en cok kullanilan). count=0 sinirsiz (Ctrl+C ile dur). Trafik var mi yok mu ilk kontrol", sev: "i" },
+  { cat: "Sniffer", code: "diagnose sniffer packet any 'host 10.40.30.2 and port 443' 4 0", desc: "IP + port filtreli — sadece HTTPS trafigini yakalar. 'and' operatoru iki kosulu birlestirir. BPF (Berkeley Packet Filter) syntax kullanilir", sev: "i" },
   { cat: "Sniffer", code: "diagnose sniffer packet any 'host 192.0.2.42 and port 500' 4 0 1", desc: "IKE (port 500) trafik yakalama — IPsec VPN troubleshoot icin. Son parametre 1=UTC timestamp. Karsi taraftan IKE paketi geliyor mu kontrolu", sev: "i" },
   { cat: "Sniffer", code: "diagnose sniffer packet any 'src host 192.0.2.152 and dst host 10.30.4.6' 4 a", desc: "Tek yonlu filtre — sadece bu kaynak'tan bu hedef'e. 'a'=absolute timestamp (tarih+saat). Asimetrik routing tespiti icin ideal", sev: "i" },
   { cat: "Sniffer", code: "diagnose sniffer packet any 'host 172.16.1.1' 6", desc: "Verbose 6 = en detayli: Ethernet header + IP header + payload hex + ASCII dump. Paket icerigini okumak icin (sifrelenmemis trafik). CPU yogun!", sev: "i" },
@@ -208,8 +208,8 @@ const COMMANDS = [
   { cat: "Policy", code: "show router policy 1", desc: "PBR (Policy Based Routing) kural 1: src/dst adres, protocol, cikis interface, gateway. Normal routing'den ONCE uygulanir", sev: "i" },
 
   // ═════════════════════ OBJECTS ═════════════════════
-  { cat: "Objects", code: "show firewall address IP_10.134.8.120/32", desc: "IP address nesnesi: subnet tipi, IP/mask. /32 = tek host. Policy'lerde srcaddr/dstaddr olarak kullanilir. Isim bosluk iceriyorsa tirnak icine alin", sev: "i" },
-  { cat: "Objects", code: "show firewall address saglik.tbmm.gov.tr", desc: "FQDN address nesnesi: DNS ile cozumlenir, IP degisirse otomatik guncellenir. DNS sunucu dogru yapilandirilmis olmali", sev: "i" },
+  { cat: "Objects", code: "show firewall address IP_10.20.8.120/32", desc: "IP address nesnesi: subnet tipi, IP/mask. /32 = tek host. Policy'lerde srcaddr/dstaddr olarak kullanilir. Isim bosluk iceriyorsa tirnak icine alin", sev: "i" },
+  { cat: "Objects", code: "show firewall address intranet.example.com", desc: "FQDN address nesnesi: DNS ile cozumlenir, IP degisirse otomatik guncellenir. DNS sunucu dogru yapilandirilmis olmali", sev: "i" },
   { cat: "Objects", code: "show firewall vip 203.0.113.50_10.20.1.153_5060_UDP", desc: "VIP (Virtual IP/DNAT): extip (WAN IP) -> mappedip (LAN IP). portforward=enable ise port bazli, disable ise 1:1 NAT. extport/mappedport farkli olabilir", sev: "i" },
 
   // ═════════════════════ USERS / AUTH ═════════════════════
@@ -668,8 +668,8 @@ const CONFIG_GUIDES = {
       "config firewall address",
       " edit SSLVPN_POOL",
       "  set type iprange",
-      "  set start-ip 10.212.100.1",
-      "  set end-ip 10.212.100.100",
+      "  set start-ip 10.50.100.1",
+      "  set end-ip 10.50.100.100",
       " next",
       "end",
       "!",
@@ -909,7 +909,7 @@ const CONFIG_GUIDES = {
       "config router static",
       " edit 0",
       "  set dst 10.100.0.0 255.255.0.0",
-      "  set gateway 10.42.216.196",
+      "  set gateway 10.60.216.196",
       "  set device wan1",
       "  set distance 10",
       "  set comment SUBE_ROUTE",
@@ -1087,7 +1087,7 @@ const CONFIG_GUIDES = {
   "session": [
     { title: "Session Filtreleme ve Analiz", steps: [
       "! === ADIM 1: Filtre koy ===",
-      "diagnose sys session filter dst 10.134.9.84",
+      "diagnose sys session filter dst 10.20.9.84",
       "! Filtre parametreleri: src, dst, sport, dport, proto, policy, vd",
       "! Birden fazla filtre = AND mantigi",
       "!",
@@ -1421,7 +1421,7 @@ const CONFIG_GUIDES = {
     { title: "FortiExtender LTE Yapilandirma", steps: [
       "! === ADIM 1: FortiExtender Authorize ===",
       "config extender-controller extender",
-      " edit FX201E5920015083",
+      " edit FX201E0000000001",
       "  set authorized enable",
       " next",
       "end",
@@ -1769,11 +1769,11 @@ function renderSniffer() {
       <summary>Ornek Cikti: Verbose 4 ile sniffer</summary>
       <div class="output-body">
         <pre><code>interfaces=[any]
-filters=[host 10.41.30.2 and port 443]
-10.200.1.5.52341 -> 10.41.30.2.443: syn 1836547290
-<span style="color:var(--ok)">10.41.30.2.443 -> 10.200.1.5.52341: syn 947281635 ack 1836547291</span>
-10.200.1.5.52341 -> 10.41.30.2.443: ack 947281636
-10.200.1.5.52341 -> 10.41.30.2.443: psh 1836547291 ack 947281636</code></pre>
+filters=[host 10.40.30.2 and port 443]
+10.200.1.5.52341 -> 10.40.30.2.443: syn 1836547290
+<span style="color:var(--ok)">10.40.30.2.443 -> 10.200.1.5.52341: syn 947281635 ack 1836547291</span>
+10.200.1.5.52341 -> 10.40.30.2.443: ack 947281636
+10.200.1.5.52341 -> 10.40.30.2.443: psh 1836547291 ack 947281636</code></pre>
         <table class="interpret-table">
           <tr><th>Gordugun</th><th>Anlami</th></tr>
           <tr><td class="val">syn ... syn ack ... ack</td><td><span class="status-ok">NORMAL</span> — 3-way handshake tamamlandi, baglanti kuruldu</td></tr>
@@ -2134,10 +2134,10 @@ function renderRouting() {
 <span style="color:var(--ok)">S*     0.0.0.0/0 [10/0] via 203.0.113.1, wan1</span>
 <span style="color:var(--info)">C      10.200.1.0/24 is directly connected, port5</span>
 <span style="color:var(--info)">C      10.200.2.0/24 is directly connected, port6</span>
-<span style="color:var(--purple)">O      10.10.0.0/24 [110/200] via 10.1.1.2, vpn_merkez, 01:23:45</span>
-<span style="color:var(--purple)">O E2   172.16.0.0/16 [110/20] via 10.1.1.2, vpn_merkez, 00:45:12</span>
+<span style="color:var(--purple)">O      10.10.0.0/24 [110/200] via 10.1.1.2, vpn_hq, 01:23:45</span>
+<span style="color:var(--purple)">O E2   172.16.0.0/16 [110/20] via 10.1.1.2, vpn_hq, 00:45:12</span>
 <span style="color:var(--warn)">B      192.168.100.0/24 [200/0] via 10.5.5.1, port3, 02:15:30</span>
-<span style="color:var(--ok)">S      10.134.0.0/16 [10/0] via 10.1.1.2, vpn_sube</span></code></pre>
+<span style="color:var(--ok)">S      10.20.0.0/16 [10/0] via 10.1.1.2, vpn_branch</span></code></pre>
         <table class="interpret-table">
           <tr><th>Kod</th><th>Anlami</th><th>Aciklama</th></tr>
           <tr><td class="val" style="color:var(--ok)">S*</td><td>Default Static Route</td><td>Internet cikisi — * candidate default demek</td></tr>
@@ -2147,7 +2147,7 @@ function renderRouting() {
           <tr><td class="val" style="color:var(--purple)">O E2</td><td>OSPF External Type 2</td><td>Baska routing domain'den redistrubute edilmis</td></tr>
           <tr><td class="val" style="color:var(--warn)">B</td><td>BGP</td><td>BGP ile ogrenilmis route</td></tr>
           <tr><td class="val">[10/0]</td><td>[distance/metric]</td><td>Dusuk distance = daha oncelikli. 10=static, 110=OSPF, 200=BGP</td></tr>
-          <tr><td class="val">via 10.1.1.2, vpn_merkez</td><td>Next-hop ve cikis interface</td><td>Trafik bu adres/interface uzerinden gidecek</td></tr>
+          <tr><td class="val">via 10.1.1.2, vpn_hq</td><td>Next-hop ve cikis interface</td><td>Trafik bu adres/interface uzerinden gidecek</td></tr>
         </table>
       </div>
     </details>
@@ -2178,7 +2178,7 @@ function renderRouting() {
       <div class="output-body">
         <pre><code>OSPF process 0, VRF 0:
 Neighbor ID     Pri   State            Dead Time   Address         Interface
-10.1.1.2          1   <span style="color:var(--ok)">Full/BDR</span>         00:00:38    10.1.1.2        vpn_merkez
+10.1.1.2          1   <span style="color:var(--ok)">Full/BDR</span>         00:00:38    10.1.1.2        vpn_hq
 10.2.2.2          1   <span style="color:var(--ok)">Full/DR</span>          00:00:35    10.2.2.2        port3
 10.3.3.3          1   <span style="color:var(--err)">Init/DROther</span>     00:00:12    10.3.3.3        port4</code></pre>
         <table class="interpret-table">
@@ -2534,7 +2534,7 @@ function renderSession() {
     <div class="content-block">
       <h3>Session Filtreleme Ornekleri</h3>
       <div class="filter-list">
-        <div class="filter-item">${makeCodeCell("diagnose sys session filter dst 10.134.9.84")}<span class="filter-desc">Hedef IP'ye gore filtrele</span></div>
+        <div class="filter-item">${makeCodeCell("diagnose sys session filter dst 10.20.9.84")}<span class="filter-desc">Hedef IP'ye gore filtrele</span></div>
         <div class="filter-item">${makeCodeCell("diagnose sys session filter src 10.200.1.50")}<span class="filter-desc">Kaynak IP'ye gore filtrele</span></div>
         <div class="filter-item">${makeCodeCell("diagnose sys session filter sport 443")}<span class="filter-desc">Kaynak port filtresi</span></div>
         <div class="filter-item">${makeCodeCell("diagnose sys session filter dport 22")}<span class="filter-desc">Hedef port filtresi</span></div>
@@ -2631,18 +2631,18 @@ function renderObjects() {
       <summary>Ornek: show firewall address (IP address nesnesi)</summary>
       <div class="output-body">
         <pre><code>config firewall address
-    edit "IP_10.134.8.120/32"
-        set subnet <span style="color:var(--info)">10.134.8.120 255.255.255.255</span>
+    edit "IP_10.20.8.120/32"
+        set subnet <span style="color:var(--info)">10.20.8.120 255.255.255.255</span>
     next
-    edit "saglik.tbmm.gov.tr"
+    edit "intranet.example.com"
         set type <span style="color:var(--info)">fqdn</span>
-        set fqdn "saglik.tbmm.gov.tr"
+        set fqdn "intranet.example.com"
     next
 end</code></pre>
         <table class="interpret-table">
           <tr><th>Tip</th><th>Ornek</th><th>Aciklama</th></tr>
-          <tr><td class="val">subnet</td><td>10.134.8.120/32</td><td>Tekil IP veya subnet. /32 = tek host</td></tr>
-          <tr><td class="val">fqdn</td><td>saglik.tbmm.gov.tr</td><td>DNS ile cozumlenen adres. DNS degisirse otomatik guncellenir</td></tr>
+          <tr><td class="val">subnet</td><td>10.20.8.120/32</td><td>Tekil IP veya subnet. /32 = tek host</td></tr>
+          <tr><td class="val">fqdn</td><td>intranet.example.com</td><td>DNS ile cozumlenen adres. DNS degisirse otomatik guncellenir</td></tr>
           <tr><td class="val">iprange</td><td>10.0.0.1 - 10.0.0.50</td><td>IP araligi</td></tr>
           <tr><td class="val">geography</td><td>TR (Turkey)</td><td>Ulke bazli adres (GeoIP)</td></tr>
         </table>
@@ -2863,7 +2863,7 @@ function renderFEXT() {
     <details class="output-example">
       <summary>Ornek: get extender status</summary>
       <div class="output-body">
-        <pre><code>Extender: FX201E5920015083
+        <pre><code>Extender: FX201E0000000001
   Status: <span style="color:var(--ok)">connected</span>
   Model: FX201E
   Firmware: v4.2.3
